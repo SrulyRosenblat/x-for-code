@@ -1,0 +1,210 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+class CodeWars
+{
+
+    public static int LowercaseCountCheck(string s)
+    {
+        int upperCaseCount = 0;
+        char[] letters = s.ToCharArray();
+        foreach (char letter in letters)
+        {
+            if (Char.IsLower(letter))
+                upperCaseCount++;
+        }
+        return s.Count(char.IsUpper);
+
+    }
+    public static int SumDigits(int number)
+    {
+        int sum = 0;
+
+        String numberStr = number.ToString();
+        Console.WriteLine("string:  " + numberStr);
+        char[] digits = numberStr.ToCharArray(0, numberStr.Length);
+        foreach (var digit in digits)
+        {
+            sum += digit;
+            Console.WriteLine(sum);
+        }
+
+        return sum;
+
+    }
+    public static bool Divide(int weight)
+    {
+        if (weight % 2 == 0 && weight != 2) return true;
+        return false;
+        // return weight > 2 && weight % 2 == 0;
+    }
+    public static string EvenOrOdd(int number)
+    {
+        if (number % 2 == 0)
+            return "Even";
+        else
+            return "Odd";
+    }
+    public static string DrawStairs()
+    {
+        string blank = " ";
+        string stairCase = "";
+        string stair = "I";
+        for (int i = 1; i <= 50; i++)
+        {
+            if (i != 1)
+                stair = blank + stair;
+            if (i != 50)
+                stairCase += stair + "\n";
+            else
+                stairCase += stair;
+        }
+
+        return stairCase;
+    }
+    // not figgured out myself
+    public static int СenturyFromYear(int year) => (year + 99) / 100;
+    public static int PositiveSum(int[] arr)
+    {
+        int sum = 0;
+        foreach (int num in arr)
+            if (num >= 0)
+                sum += num;
+        return sum;
+    }
+    public static int Opposite(int number)
+    {
+        if (number > 0)
+            return number = -number * 2;
+        if (number < 0)
+            return number = +number * 2;
+        else
+            return number;
+        // better way return -number
+    }
+    public static string DrawStairs(int numOfStairs)
+    {
+        string blank = " ";
+        string stairCase = "";
+        string stair = "L";
+        for (int i = 1; i <= numOfStairs; i++)
+        {
+            if (i != 1)
+                stair = blank + stair;
+            if (i != numOfStairs)
+                stairCase += stair + "\n";
+            else
+                stairCase += stair;
+        }
+
+        return stairCase;
+    }
+    public static int CalculateTip(double amount, string rating)
+    {
+        rating = rating.ToUpper();
+        double percentage = 0;
+        switch (rating)
+        {
+            case "TERRIBLE":
+                percentage = .0;
+                break;
+            case "POOR":
+                percentage = .05;
+                break;
+            case "GOOD":
+                percentage = .10;
+                break;
+            case "GREAT":
+                percentage = .15;
+                break;
+            case "EXCELLENT":
+                percentage = .20;
+                break;
+            default:
+                return -1;
+        }
+        percentage = (amount / percentage) / 100;
+        int tip = Convert.ToInt32(Math.Round(percentage, 0, MidpointRounding.AwayFromZero));
+        return tip;
+    }
+    public static string repeatStr(int n, string s)
+    {
+        for (int i = 0; i <= n; i++)
+            Console.WriteLine(s);
+        return "";
+    }
+    public static int CountSheeps(bool[] sheeps)
+    {
+        return sheeps.Count(k => false);
+
+    }
+    public static string boolToWord(bool word) => word ? "Yes" : "No";
+    public static bool ZeroFuel(uint distanceToPump, uint mpg, uint fuelLeft) => mpg * fuelLeft >= distanceToPump;
+    public static int Divisors(int n)
+    {
+        int c = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            if (n % i == 0)
+                c++;
+        }
+        return c;
+    }
+    public static int FindShort(string s)
+    {
+        return s.Split(' ').Min(x => x.Length);
+    }
+    // only works for positive
+    public static int SquareDigits(int n)
+    {
+        string result = "";
+        foreach (Char c in n.ToString())
+        {
+            int num = Convert.ToInt32(c.ToString());
+            result += num * num;
+        }
+        return Convert.ToInt32(result);
+
+    }
+    public static int[] FindAll(int[] array, int n)
+    {
+        List<int> locations = new List<int>();
+        for (int i = 0; i < array.Length; ++i)
+        {
+            if (array[i] == n) locations.Add(i);
+        }
+        return locations.ToArray();
+    }
+    public static string BalancedNumber(int number)
+    {
+        string output = "";
+        
+        List<char> numList = number.ToString().ToList<char>();
+        int count = numList.Count;
+        if (numList.Count % 2 == 0)
+        {
+            numList.RemoveAt(numList.Count / 2);
+            int halfList = numList.Count / 2;
+            for (int i = 0; i <= halfList; ++i)
+            {
+                output = numList[i] == numList[numList.Count - i] ? "Balanced" : "Not Balanced";
+                if (output == "Not Balanced") return output;
+            }
+
+        }
+        else
+        {
+            int halfList = numList.Count / 2 + 1;
+            for (int i = 0; i < halfList; ++i)
+            {
+                output = numList[i] == numList[numList.Count - i] ? "Balanced" : "Not Balanced";
+                if (output == "Not Balanced") return output;
+            }
+        }
+        return output;
+    }
+    public static bool IsZeroBalanced(List<int> xs) => xs.Sum() == 0 ? xs.Count % 2 == 0 ? xs.Count!= 0? true : false : false:false;
+}

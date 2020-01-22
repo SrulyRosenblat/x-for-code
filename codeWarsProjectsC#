@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//sorry i didnt take to much notes 
 class CodeWars
 {
-
+    //counts all lower case letters
     public static int LowercaseCountCheck(string s)
     {
         int upperCaseCount = 0;
@@ -19,6 +20,7 @@ class CodeWars
         return s.Count(char.IsUpper);
 
     }
+    //adds up all the digits
     public static int SumDigits(int number)
     {
         int sum = 0;
@@ -35,12 +37,14 @@ class CodeWars
         return sum;
 
     }
+    // something about a watermelon i forgot
     public static bool Divide(int weight)
     {
         if (weight % 2 == 0 && weight != 2) return true;
         return false;
         // return weight > 2 && weight % 2 == 0;
     }
+    //checks wether a given number is even or odd
     public static string EvenOrOdd(int number)
     {
         if (number % 2 == 0)
@@ -48,24 +52,9 @@ class CodeWars
         else
             return "Odd";
     }
-    public static string DrawStairs()
-    {
-        string blank = " ";
-        string stairCase = "";
-        string stair = "I";
-        for (int i = 1; i <= 50; i++)
-        {
-            if (i != 1)
-                stair = blank + stair;
-            if (i != 50)
-                stairCase += stair + "\n";
-            else
-                stairCase += stair;
-        }
-
-        return stairCase;
-    }
+    
     // not figgured out myself
+    //figres out the current century
     public static int СenturyFromYear(int year) => (year + 99) / 100;
     public static int PositiveSum(int[] arr)
     {
@@ -75,6 +64,7 @@ class CodeWars
                 sum += num;
         return sum;
     }
+    // returns the opposite value
     public static int Opposite(int number)
     {
         if (number > 0)
@@ -85,11 +75,12 @@ class CodeWars
             return number;
         // better way return -number
     }
+    //draws stairs a given amount of time
     public static string DrawStairs(int numOfStairs)
     {
         string blank = " ";
         string stairCase = "";
-        string stair = "L";
+        string stair = "I";
         for (int i = 1; i <= numOfStairs; i++)
         {
             if (i != 1)
@@ -102,6 +93,7 @@ class CodeWars
 
         return stairCase;
     }
+    // calculates tips bassed on waiter rating
     public static int CalculateTip(double amount, string rating)
     {
         rating = rating.ToUpper();
@@ -130,19 +122,25 @@ class CodeWars
         int tip = Convert.ToInt32(Math.Round(percentage, 0, MidpointRounding.AwayFromZero));
         return tip;
     }
+    //repeats a string a given amount of times
     public static string repeatStr(int n, string s)
     {
         for (int i = 0; i <= n; i++)
             Console.WriteLine(s);
         return "";
     }
+    // counting sheep in a bool array
     public static int CountSheeps(bool[] sheeps)
     {
-        return sheeps.Count(k => false);
+        return sheeps.Count(s => false);
 
     }
+    //turns a bool into a string
     public static string boolToWord(bool word) => word ? "Yes" : "No";
+    //Purely thearetical
+    //checks if your car could make it to the pump 
     public static bool ZeroFuel(uint distanceToPump, uint mpg, uint fuelLeft) => mpg * fuelLeft >= distanceToPump;
+    //returns the count of all the posible divisors of a given int
     public static int Divisors(int n)
     {
         int c = 0;
@@ -153,11 +151,13 @@ class CodeWars
         }
         return c;
     }
+    //finds the shortest word in string
     public static int FindShort(string s)
     {
         return s.Split(' ').Min(x => x.Length);
     }
     // only works for positive
+    //squres every digit and returns as a int
     public static int SquareDigits(int n)
     {
         string result = "";
@@ -169,6 +169,7 @@ class CodeWars
         return Convert.ToInt32(result);
 
     }
+    // finds all matching ints in a array
     public static int[] FindAll(int[] array, int n)
     {
         List<int> locations = new List<int>();
@@ -178,33 +179,43 @@ class CodeWars
         }
         return locations.ToArray();
     }
+    // tuff stuff couldnt figure it out, ill get back to it
+    //checks to see if the number is ballenced (same digits) on both sides of middle
     public static string BalancedNumber(int number)
     {
         string output = "";
-        
-        List<char> numList = number.ToString().ToList<char>();
-        int count = numList.Count;
-        if (numList.Count % 2 == 0)
-        {
-            numList.RemoveAt(numList.Count / 2);
-            int halfList = numList.Count / 2;
-            for (int i = 0; i <= halfList; ++i)
-            {
-                output = numList[i] == numList[numList.Count - i] ? "Balanced" : "Not Balanced";
-                if (output == "Not Balanced") return output;
-            }
 
-        }
-        else
-        {
-            int halfList = numList.Count / 2 + 1;
-            for (int i = 0; i < halfList; ++i)
+        List<char> numList = number.ToString().ToList<char>();
+
+        if (numList.Count % 2 == 0) numList.RemoveRange(numList.Count / 2- 1, 2);
+        else numList.RemoveAt(numList.Count / 2 );
+      
+            foreach (var digit in numList)
             {
-                output = numList[i] == numList[numList.Count - i] ? "Balanced" : "Not Balanced";
-                if (output == "Not Balanced") return output;
+            List<char> doubles = numList.FindAll(sames => sames == digit);
+            if (doubles.Count % 2 != 0 || doubles.Count == 1)
+                return "Not Balanced";
             }
-        }
-        return output;
+        return "Balanced";
     }
-    public static bool IsZeroBalanced(List<int> xs) => xs.Sum() == 0 ? xs.Count % 2 == 0 ? xs.Count!= 0? true : false : false:false;
+    // use && more super usefull
+    //checks wether for each negitive thers a positive
+    public static bool IsZeroBalanced(List<int> xs) => xs.Sum() == 0 && xs.Count(x => xs.Contains(-x)) == xs.Count && xs.Count!= 0? true : false;
+    // 1/22/2020
+    //not my best work
+    // studering machine
+    public static String Accum(string word)
+    {
+        string studder = "";
+        int letNum = 0;
+        foreach (var Lletter in word)
+        {
+            studder += Lletter.ToString().ToUpper();
+            for (int i = 0; i < letNum; i++)
+                studder += Lletter;
+            studder += "-";
+            letNum++;
+        }
+        return studder.Remove(studder.LastIndexOf("-"), 1);
+    }
 }

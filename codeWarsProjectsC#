@@ -1,4 +1,5 @@
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -183,7 +184,6 @@ class CodeWars
     //checks to see if the number is ballenced (same digits) on both sides of middle
     public static string BalancedNumber(int number)
     {
-        string output = "";
 
         List<char> numList = number.ToString().ToList<char>();
 
@@ -212,10 +212,70 @@ class CodeWars
         {
             studder += Lletter.ToString().ToUpper();
             for (int i = 0; i < letNum; i++)
+            {
                 studder += Lletter;
-            studder += "-";
+                if(i!=letNum)
+                studder += "-";
+            }
+              
             letNum++;
         }
         return studder.Remove(studder.LastIndexOf("-"), 1);
+    }
+    // counts all vowels in a string
+    public static int GetVowelCount(string str)
+    {
+       return str.ToLower().Where(x => x == 'a' || x == 'i' || x == 'e' || x == 'o' || x == 'u').Count();
+    }
+    // sees if the numbers differ by 1
+    public static string JumpingNumber(int number)
+    {
+        int? compareMe = null;      
+        foreach(var digit in number.ToString())
+        {
+            Convert.ToInt32(digit);
+            if (digit + 1 != compareMe && digit - 1 != compareMe && compareMe != null)
+            { return "Not!!"; }
+           compareMe = Convert.ToInt32( digit );
+        }
+        return "Jumping!!";
+    }
+    // returns the first 'm' number of multiples of 'n'
+    public static double[] Multiples(int m, double n)
+    {
+        List<double> multis = new List<double>();
+        for (int i = 1; i <= m; i++)
+        {
+            multis.Add(n * i);
+        }
+        return multis.ToArray();
+    }
+    //gets sum of diffrence
+    public int GetSum(int a, int b)
+    {
+        int sum = 0, min = a > b ? b : a, max = a > b ? a : b;
+
+        for (int i = min; i <= max; i++)
+            sum += i;
+
+        return sum;
+    }
+    // switches out dna for complementery dna
+    public static string MakeComplement(string dna)
+    {
+        string compl = "";
+        foreach( char letter in dna.ToUpper())
+        {
+            compl += letter == 'A' ? 'T' : letter == 'T' ? 'A' : letter == 'G' ? 'C' : 'G';
+        }
+        return compl;
+    }
+    // checks if a given number is square 
+    public static bool IsSquare(int n)
+    {
+       for(int i = 0; i < n; i++)
+           if (i * i == n) { return true; }
+        return false;
+        // return Math.Sqrt(n) % 1 == 0; Not mine but genius
     }
 }
